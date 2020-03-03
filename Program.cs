@@ -15,7 +15,6 @@ namespace Kruskal
             graph.AddEdge((2, 4), 5);
             graph.AddEdge((3, 4), 6);
             graph.GetMST();
-            Console.WriteLine("Hello World!");
         }
     }
 }

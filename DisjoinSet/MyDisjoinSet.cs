@@ -6,12 +6,19 @@ namespace DisjoinSet
     {
         private Dictionary<int, int> _sets = new Dictionary<int, int>();
 
+        public MyDisjoinSet() {}
+
         public MyDisjoinSet(IEnumerable<int> elements)
         {
             foreach(var el in elements)
             {
                 _sets.Add(el, el);
             }
+        }
+
+        public void Add(int element)
+        {
+            _sets.Add(element, element);
         }
 
         public int Find(int element)
@@ -27,9 +34,31 @@ namespace DisjoinSet
             _sets[second] = first;
         }
 
+        public MyDisjoinSet Copy()
+        {
+            var result = new MyDisjoinSet();
+            
+            foreach(var el in this)
+            {
+                result.Add(el.Key, el.Value);
+            }
+
+            return result;
+        }
+
         public IEnumerator<KeyValuePair<int, int>> GetEnumerator()
         {
             return _sets.GetEnumerator();
+        }
+
+        public bool Contains(int element)
+        {
+            return _sets.ContainsKey(element);
+        }
+
+        private void Add(int key, int value)
+        {
+            _sets.Add(key, value);
         }
     }
 }
